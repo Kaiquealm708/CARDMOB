@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import Counter from './components/Counter';
-import Photo from './components/Photo';
+import { useState, useEffect } from 'react'
+import './App.css'
+import Counter from './components/Counter'
+import Photo from './components/photo'
+import Album from './components/album'
 
 function App() {
   const [count, setCount] = useState(0);
   const[photos, setPhotos] = useState([]);
+  const [albumId, setAlbumId] = useState(1)
 
   const fetchPhotos = async () => {
     try {
@@ -13,12 +15,12 @@ function App() {
       const response = await fetch(url); // Por padrão executa um request do tipo GET
       if (response.status === 200) {
         const data = await response.json();
-        //console.log(data)
-        const updatedPhotos = data.map( (photo) => ({
+       // console.log(data)
+        const updatedPhotos = data.map((photo) => ({
           ...photo,
           thumbnailUrl: `https://picsum.photos/150?random=${photo.id}`
-        }));
-        //
+        }))
+
         setPhotos(updatedPhotos);
       }
 
@@ -31,22 +33,32 @@ function App() {
     fetchPhotos();
   }, []);
 
+  //arrow function
+  //
+
   return (
     <>
-      <Counter title="Contando..." /> 
+      {/* <Counter title="Contando..." /> 
       <Counter initial={100} />
-      <article>
+      {/* <article>
         <h1>Album da API</h1>
         {photos.map( (photo) => (
           // <article key={photo.id}>
           //   <h2>ID #{photo.id} {photo.title}</h2>
           //   <img src={photo.thumbnailUrl} alt={photo.title} />
           // </article>
-        <Photo photo={photo} />
+        <Photo photo={photo}/>
       ))}
-      </article>
+      </article> */} 
+      <div>
+        <button onClick={() => setAlbumId(1)}>album #1</button>
+        <button onClick={() => setAlbumId(2)}>album #2</button>
+        <button onClick={() => setAlbumId(3)}>album #3</button>
+        <button onClick={() => setAlbumId(4)}>album #4</button>
+      </div>
+      <Album albumId={albumId}/>
     </>
-  )
+  );
 }
 
 export default App
