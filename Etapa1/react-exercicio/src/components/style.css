@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ccc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+  max-height: 500px;
+  /* Define uma altura máxima para evitar overflow */
+  overflow-y: auto;
+  /* Ativa rolagem vertical quando necessário */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.text-xl {
+  color: black;
+}
+
+.cancel {
+  margin-left: 10px;
+}
+input {
+  width: 90%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 30%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button.bg-blue-500 {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.bg-red-500 {
+  background-color: #dc3545;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.contato-card {
+  background: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p { 
+  text-align: left;
+  margin-left: 10px;
+  color: black;
+}
+
+
+
+/* Ajuste na lista de contatos */
+.lista-contatos {
+  max-height: 300px;
+  /* Ajuste conforme necessário */
+  overflow-y: auto;
+  /* Permite rolagem caso a lista cresça muito */
+  margin-top: 10px;
+}
+
+/* Ajuste no contato individual */
+.contato-card {
+  background: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* Evita que os contatos saiam do container */
+  word-wrap: break-word;
+  /* Quebra palavras longas */
+}
+
+.editing {
+  background-color: green;
+  margin-left: 10px;
+}
