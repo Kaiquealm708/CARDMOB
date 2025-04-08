@@ -3,9 +3,7 @@ import Contato from './Contato'
 import './style.css'
 
 const ListaContatos = () => {
-  const [contatos, setContatos] = useState([
-  ]);
-
+  const [contatos, setContatos] = useState([]);
   const [novoNome, setNovoNome] = useState("");
   const [novoTelefone, setNovoTelefone] = useState("");
   const [editandoId, setEditandoId] = useState(null);

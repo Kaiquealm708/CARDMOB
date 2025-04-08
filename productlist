@@ -1,0 +1,148 @@
+{/*import React, { useState } from 'react';
+import ProductCard from './ProductCard';
+
+const ProductList = () => {
+  const [produtos, setProdutos] = useState([
+    { id: 1, nomeProduto: 'Pelúcia', preco: 'R$80,00' },
+    { id: 2, nomeProduto: 'Luva', preco: 'R$25,00' },
+    { id: 3, nomeProduto: 'Jogo de Talheres', preco: 'R$110,00' }
+  ]);
+
+  const [newName, setNewName] = useState('');
+  const [newPreco, setNewPreco] = useState('');
+  const [carrinho, setCarrinho] = useState([]);
+
+  const addProduto = () => {
+    if (newName && newPreco) {
+      setProdutos([...produtos, { id: Date.now(), nomeProduto: newName, preco: newPreco }]);
+      setNewName('');
+      setNewPreco('');
+    }
+  };
+
+  const removerProduto = (id) => {
+    setProdutos(produtos.filter(produto => produto.id !== id));
+  };
+
+  const adicionarAoCarrinho = (produto) => {
+    setCarrinho([...carrinho, produto]);
+  };
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2">Lista de Produtos</h2>
+      
+      <input 
+        type="text" 
+        placeholder="Nome do Produto" 
+        value={newName} 
+        onChange={(e) => setNewName(e.target.value)} 
+        className="border p-1 m-1"
+      />
+      <input 
+        type="text" 
+        placeholder="Preço" 
+        value={newPreco} 
+        onChange={(e) => setNewPreco(e.target.value)} 
+        className="border p-1 m-1"
+      />
+      <button onClick={addProduto} className="bg-blue-500 text-white px-3 py-1 rounded m-1">
+        Adicionar Produto
+      </button>
+
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {produtos.map(produto => (
+          <ProductCard 
+            key={produto.id} 
+            nomeProduto={produto.nomeProduto} 
+            preco={produto.preco} 
+            onDelete={() => removerProduto(produto.id)}
+            addCar={() => adicionarAoCarrinho(produto)}
+          />
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <h2 className="text-xl font-bold mb-2">Carrinho</h2>
+        {carrinho.length === 0 ? (
+          <p>Carrinho vazio</p>
+        ) : (
+          <ul className="list-disc list-inside">
+            {carrinho.map((item, index) => (
+              <li key={index}>{item.nomeProduto} - {item.preco}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ProductList;*/}
+
+
+
+
+
+
+
+
+import React, { useState } from 'react'
+import ProductCard from './ProductCard'
+
+const ProductList = () => {
+  const [produtos, setProdutos] = useState([
+    {id: 1, nomeProduto: 'Pelúcia', preco: 'R$80,00'},
+    {id: 2, nomeProduto: 'Luva', preco: 'R$25,00'},
+    {id: 3, nomeProduto: 'Jogo de Talheres', preco: 'R$110,00'}
+
+  ]);
+  
+  const addCarrinho = () => {
+    if (newName && newPreco) {
+      setProdutos([...produtos, { id: Date.now(), nomeProduto: newName, preco: newPreco }]);
+      setnewName("");
+      setnewPreco("");
+    }
+  };
+
+  const removerProduto = (id) => {
+    setProdutos(produtos.filter(produto => produto.id !== id));
+  };
+
+   
+  
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold">Lista de produtos</h2>
+      <input 
+        type="text" 
+        placeholder="nomeProduto" 
+        value={newName} 
+        onChange={(e) => setnewName(e.target.value)} 
+        className="border p-1 m-1" 
+      />
+      <input 
+        type="text" 
+        placeholder="preco" 
+        value={newPreco} 
+        onChange={(e) => setnewPreco(e.target.value)} 
+        className="border p-1 m-1" 
+      />
+      <div>
+        {produtos.map(produto => (
+          <ProductCard 
+            key={produto.id} 
+            nomeProduto={produto.nomeProduto} 
+            preco={produto.preco} 
+            onDelete={() => removerProduto(produto.id)}
+            addCar={() => addCarrinho(produto.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+export default ProductList;
