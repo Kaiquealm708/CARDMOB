@@ -13,11 +13,11 @@ export default function App() {
   const [editItemText, setEditItemText] = useState('');
 
   const incrementCounter = () => {
-    setCounter = (counter + 1);
+    setCounter (counter + 1);
   };
 
   const decrementCounter = () => {
-    setCounter = (counter - 1);
+    setCounter (counter - 1);
   };
 
   const addItem = () => {
