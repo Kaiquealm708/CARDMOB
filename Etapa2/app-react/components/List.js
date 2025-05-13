@@ -7,7 +7,7 @@ class List extends Component {
       {id: 0, name: 'Ben'}, 
       {id: 1, name: 'Susan'}, 
       {id: 2, name: 'Roberth'}, 
-      {id: 3, name: 'Christian'}
+      {id: 3, name: 'Arioston'}
     ]
   }
   alertItemName = (item) => {
