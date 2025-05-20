@@ -1,12 +1,11 @@
 import React, { useState } from "react"; 
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import ScrollViewExample from './components/ScrollViewExample'
-
 export default function App() {
   
   return (
     <View style={styles.container}>
-      <ScrollViewExample />
+      
     </View>
   );
 }
