@@ -1,16 +1,15 @@
 {
   "items": [
     {
-      "text": "uyuh",
-      "id": "cf23"
-    },
+      "text": "",
+      "id": "a75f"
+    }
+  ],
+  "compras": [
     {
-      "id": "1a76",
-      "text": "Arroz"
-    },
-    {
-      "id": "069a",
-      "text": "arroz"
+      "text": "bolo",
+      "quantidade": "5",
+      "id": "69e6"
     }
   ]
 }
