@@ -215,7 +215,7 @@ export default function App() {
         keyboardType="numeric"
       />
       <Button
-        title="Add produto"
+        title="Incluir produto"
         onPress={addItem}
       />
 

@@ -160,7 +160,7 @@ export default function App() {
           style={styles.editInput}
           onChangeText={setEditQuantidade}
           value={editQuantidade}
-          placeholder="Quantidade"
+          placeholder="Teste"
           />
           <Button title='Update' onPress={() => updateItem(item.id)}></Button>
         </View>
