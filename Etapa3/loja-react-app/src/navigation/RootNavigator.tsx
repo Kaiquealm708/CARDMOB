@@ -1,11 +1,13 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { RootStackParamList, TabParamList } from './types';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { RootStackParamList, TabParamList } from "./types";
 
-// Telas do App
+// Telas do app.
 import HomeScreen from "../screens/HomeScreen";
+import RegisterScreen from "../screens/RegisterScreen";
+import LoginScreen from "../screens/LoginScreen"
 // importar depois que implementar: DetailsScreen, SettingsScreen
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
@@ -16,6 +18,7 @@ function TabNavigator() {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={HomeScreen} />
+      <Tab.Screen name="Register" component={RegisterScreen} />
     </Tab.Navigator>
   );
 }
@@ -23,15 +26,20 @@ function TabNavigator() {
 function AppNavigator() {
   return (
     <AppStack.Navigator>
-      <AppStack.Screen 
-        name="Tabs" 
-        component={TabNavigator} 
+      <AppStack.Screen
+        name="Tabs"
+        component={TabNavigator}
         options={{ headerShown: false }}
       />
-      <AppStack.Screen 
-        name="Details" 
-        component={HomeScreen} 
-        options={{ title: 'Detalhes' }}
+      <AppStack.Screen
+        name="Details"
+        component={HomeScreen}
+        options={{ title: "Detalhes" }}
+      />
+      <AppStack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ title: "Acessar" }}
       />
     </AppStack.Navigator>
   );
@@ -43,4 +51,4 @@ export default function RootNavigator() {
       <AppNavigator />
     </NavigationContainer>
   );
-};
+}
