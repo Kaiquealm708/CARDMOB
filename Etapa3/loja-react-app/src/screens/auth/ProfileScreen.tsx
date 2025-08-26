@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import { useTheme } from "../contexts/ThemeContext"; // Nova
-import { useAuth } from "../contexts/AuthContext";
+import { useTheme } from "../../contexts/ThemeContext"; // Nova
+import { useAuth } from "../../contexts/AuthContext";
 
-function HomeScreen({ navigation }: any) {
+function ProfileScreen({ navigation }: any) {
   const { theme, toggleTheme } = useTheme();
-  const { login } = useAuth();
+  const { logout } = useAuth();
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -13,17 +13,16 @@ function HomeScreen({ navigation }: any) {
       <Text
         style={{ color: theme.colors.text, marginBottom: theme.spacing(1) }}
       >
-        Home Screen
+        Profile Screen
       </Text>
       <Button title="Alternar tema" color={theme.colors.primary} onPress={toggleTheme}/>
       <Button title="Ir para Detalhes" onPress={ () => navigation.navigate("Details")}/>
-      <Button title="Login" onPress={ () => navigation.navigate("Login")}/>
-      <Button title="Fake Login" onPress={ () => login('fake_token') }/>
+      <Button title="Sair" onPress={logout}/>
     </View>
   );
 }
 
-export default HomeScreen;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
   container: {

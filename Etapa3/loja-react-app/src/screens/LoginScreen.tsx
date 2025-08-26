@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Text} from "react-native"
+import { useAuth } from "../contexts/AuthContext";
+import { fakeLogin } from "../services/authService";
 
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useAuth();
 
   const handlelogin = async () => {
     try {
         // Lógica de login / conexaão com backend
+        const token = await fakeLogin(email, password);
+        login(token);
         console.log('login ok');
     } catch (err: any) {
         setError(err);
