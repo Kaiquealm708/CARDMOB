@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RootStackParamList, TabParamList } from "./types";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 // Telas do app - área logada.
 import HomeScreen from "../screens/HomeScreen";
@@ -14,7 +15,19 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={({ route, navigation }) => ({
+        tabBarIcon: ({ color, focused, size }) => {
+          let iconName;
+          if (route.name === "Home") {
+            iconName = focused ? "home" : "home";
+          }
+          return <FontAwesome name={iconName} size={size} color={color} />;
+        },
+        tabActiveTintColor: "red",
+        tabBarInactiveTintColor: "gray",
+        headerShown: false,
+      })}>
+      
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={HomeScreen} />
       <Tab.Screen name="Register" component={RegisterScreen} />
