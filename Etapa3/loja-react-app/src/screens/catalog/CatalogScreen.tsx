@@ -1,30 +1,47 @@
-import React, { useContext } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
 
 import CatalogCard from './CatalogCard';
 
 // Todo: importar o serviço de recuperação de catalog
+import { getCatalog } from '../../services/catalogService'; // novo
 
 const CatalogScreen = ({navigation} : any) => {
+  const [catalog, setCatalog] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchCatalog = async () => {
+      try {
+        const data = await getCatalog();
+        setCatalog(data);      
+      }
+      catch (error) {
+        console.error('Erro ao buscar catalogo:', error);
+      }
+    };
+    fetchCatalog();
+    console.log(catalog);
+  }, []);
   const handleBuyPress = (product: any) => {
     // 1 - Adicionar ao carrinho
     // 2 - Navegar para a tela do carrinho
     console.log(product);
   ;}
 
-  const renderItem = ({ product }: any) => (
+  const renderItem = ({ item }: any) => (
     <CatalogCard
-      product={product}
-      onBuyPress={() => handleBuyPress(product)}
+      product={item}
+      onBuyPress={() => handleBuyPress(item)}
     />
   );
 
   return (
     <View style={styles.container}>
+      <Text>Menu</Text>
       <FlatList
-        data={[]}
+        data={catalog} // alterado
         renderItem={renderItem}
-        keyExtractor={( item: any ) => item.id }
+        keyExtractor={( item: any ) => item.id.toString()} // alterado
       />
     </View>
   );
