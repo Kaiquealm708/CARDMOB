@@ -1,37 +1,44 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import React, { useState, useEffect } from "react"; // alterado
+import { View, Text, FlatList, StyleSheet } from "react-native";
 
-import CatalogCard from './CatalogCard';
+import CatalogCard from "./CatalogCard";
 
-// Todo: importar o serviço de recuperação de catalog
-import { getCatalog } from '../../services/catalogService'; // novo
+// Todo: importar o serviço de recuperação do catalog
+import { getCatalog } from "../../services/catalogService"; // novo
 
-const CatalogScreen = ({navigation} : any) => {
-  const [catalog, setCatalog] = useState<any[]>([]);
+import { useShop } from "../../contexts/ShopContext";
 
+const CatalogScreen = ({ navigation }: any) => {
+  const [catalog, setCatalog] = useState<any[]>([]); // novo
+  const { addToCart } = useShop();
+
+  // bloco novo
   useEffect(() => {
     const fetchCatalog = async () => {
       try {
         const data = await getCatalog();
-        setCatalog(data);      
-      }
-      catch (error) {
-        console.error('Erro ao buscar catalogo:', error);
+        setCatalog(data);
+      } catch (error) {
+        console.error("Erro ao buscar o catálogo:", error);
       }
     };
     fetchCatalog();
     console.log(catalog);
   }, []);
+
   const handleBuyPress = (product: any) => {
     // 1 - Adicionar ao carrinho
-    // 2 - Navegar para a tela do carrinho
+    // 2 - Ir para a tela do carrinho
+    addToCart(product);
     console.log(product);
-  ;}
+  };
 
-  const renderItem = ({ item }: any) => (
+  const renderItem = (
+    { item }: any // alterado
+  ) => (
     <CatalogCard
-      product={item}
-      onBuyPress={() => handleBuyPress(item)}
+      product={item} // alterado
+      onBuyPress={() => handleBuyPress(item)} // alterado
     />
   );
 
@@ -41,7 +48,7 @@ const CatalogScreen = ({navigation} : any) => {
       <FlatList
         data={catalog} // alterado
         renderItem={renderItem}
-        keyExtractor={( item: any ) => item.id.toString()} // alterado
+        keyExtractor={(item: any) => item.id.toString()} // alterado
       />
     </View>
   );
@@ -49,10 +56,10 @@ const CatalogScreen = ({navigation} : any) => {
 
 export default CatalogScreen;
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: '#F8F8F8'
+    backgroundColor: "#F8F8F8",
   },
-})
+});

@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 import CartItem from "./CartItem";
 
+import { useShop } from "../../contexts/ShopContext";
+
 const CartScreen = ({ navigation }: any) => {
+  const { cartItems } = useShop();
+
   const renderItem = ({ item }: any) => <CartItem item={item} />;
 
   const cartTemp = [
@@ -20,7 +24,7 @@ const CartScreen = ({ navigation }: any) => {
     <View>
       <Text>Carrinho de compras</Text>
       <FlatList
-        data={cartTemp}
+        data={cartItems}
         renderItem={renderItem}
         keyExtractor={(item: any) => item.id.toString()}
       />
