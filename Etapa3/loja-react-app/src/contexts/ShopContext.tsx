@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 type ShopContextType = {
   cartItems: any[];
   addToCart: (item: any) => Promise<void>;
+  removeFromCart: (itemId: number) => Promise<void>;
 };
 
 export const ShopContext = createContext<ShopContextType>(
@@ -31,7 +32,15 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  return <ShopContext value={{ cartItems, addToCart }}>{children}</ShopContext>;
+  const removeFromCart = (itemId: number) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  };
+
+  return (
+    <ShopContext value={{ cartItems, addToCart, removeFromCart }}>
+      {children}
+    </ShopContext>
+  );
 };
 
 export const useShop = () => useContext(ShopContext);
