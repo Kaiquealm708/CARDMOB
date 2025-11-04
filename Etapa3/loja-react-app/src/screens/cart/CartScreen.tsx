@@ -53,7 +53,7 @@ const CartScreen = ({ navigation }: any) => {
               <Text style={styles.continueButtonText}>Continuar comprando</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Catalog")}
+              onPress={() => navigation.navigate("Checkout")}
               style={styles.checkoutButton}
             >
               <Text style={styles.checkoutButtonText}>Concluir Pedido</Text>
