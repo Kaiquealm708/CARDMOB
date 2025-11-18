@@ -4,17 +4,18 @@ import { View, Text, Button, StyleSheet, Image } from "react-native"; // modific
 import { useTheme } from "../../contexts/ThemeContext";
 import { useAuth } from "../../contexts/AuthContext";
 
-import { requestProfileById } from "../../services/profileService"
+import { requestProfileById } from "../../services/profileService"; // novo
 
 function ProfileScreen({ navigation }: any) {
   const { theme, toggleTheme } = useTheme();
-  const { logout } = useAuth();
+  const { logout, userData } = useAuth();
   const [user, setUser] = useState({}); // novo
 
   // novo
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        console.log(userData); // novo
         const user = await requestProfileById(1);
         console.log(user);
         setUser(user);
