@@ -9,11 +9,6 @@ type ShopContextType = {
   getTotalPrice: () => number;
   clearCart: () => void;
   lastOrderInfo: (orderInfo: any) => void;
-  orderInfo: any[]; // Added orderInfo to the type
-  editingItem: any[]; // Added editingItem to the type
-  setEditingItem: React.Dispatch<React.SetStateAction<any[]>>; // Added setEditingItem to the type
-  newImage: string; // Added newImage to the type
-  pickImage: () => Promise<void>; // Added pickImage to the type
 };
 
 export const ShopContext = createContext<ShopContextType>(
@@ -45,7 +40,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const removeFromCart = async (itemId: number): Promise<void> => {
+  const removeFromCart = (itemId: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
@@ -64,7 +59,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   // Image picker.
-  const pickImage = async () => {
+  const pickImage = async (): Promise<string> => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status === "granted") {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -76,6 +71,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({
         const imageUri = result.assets[0].uri;
         console.log("Image uri", imageUri);
         setNewImage(imageUri);
+        return Promise.resolve(imageUri);
       } else {
         console.log("A seleção de imagem foi cancelada");
       }
