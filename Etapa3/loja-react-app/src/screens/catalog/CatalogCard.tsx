@@ -1,29 +1,34 @@
-import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import React, { useContext, useEffect } from "react";
+import { View, Text, Image, StyleSheet, Button } from "react-native";
+
+import { useShop } from "../../contexts/ShopContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 const CatalogCard = ({ product, onBuyPress }: any) => {
+  const { pickImage } = useShop();
+  const { userData } = useAuth() as unknown as { userData: { is_admin: boolean } };
+
   return (
     <View style={styles.card}>
-      <Image 
-        source={{ uri: product.image }} 
-        style={styles.image} 
-      />
-      <View style={styles.details} >
-          <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.description}>{product.description}</Text>
-          <Text style={styles.price}>R$ {product.price.toFixed(2)}</Text>
-          <View style={styles.buttonsContainer}>
-              <Button 
-                  title="Comprar" 
-                  color="#28A745" 
-                  onPress={onBuyPress} 
-              />
-          </View>
+      <Image source={{ uri: product.image }} style={styles.image} />
+      <View style={styles.details}>
+        <Text style={styles.name}>{product.name}</Text>
+        <Text style={styles.description}>{product.description}</Text>
+        <Text style={styles.price}>R$ {product.price.toFixed(2)}</Text>
+        <View style={styles.buttonsContainer}>
+          <Button title="Comprar" color="#28A745" onPress={onBuyPress} />
+          {userData.is_admin ? (
+            <Button
+              title="Editar"
+              color="#007BFF"
+              onPress={() => pickImage()}
+            />
+          ) : null}
+        </View>
       </View>
     </View>
   );
-}
-
+};
 export default CatalogCard;
 
 const styles = StyleSheet.create({

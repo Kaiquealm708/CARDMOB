@@ -19,6 +19,7 @@ export type AuthTabParamList = {
   Home: undefined;
   Settings: undefined;
   Orders: undefined;
+  Catalog: undefined;
 };
 
 export type AuthStackParamList = {
